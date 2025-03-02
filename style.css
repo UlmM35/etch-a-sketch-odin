@@ -4,6 +4,7 @@ body {
 
 .header {
     margin-bottom: 8px;
+    font-family:'Times New Roman', Times, serif
 }
 
 button {
@@ -13,14 +14,12 @@ button {
 
 .row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 960px;
-    max-height: 960px;
+    background-color: black;
 }
 
 .square {
     flex: 1;
-    border: 2px solid black;
-    padding: 24px;
+    border: 2px solid blue;
+    padding: 20px;
+    background-color: black;
 }
