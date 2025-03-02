@@ -1,27 +1,57 @@
 function generateDivs(size = 64) {
     const container = document.querySelector("#container");
-    for (let i = 0; i < size/4; i++) {
+    for (let i = 0; i < size; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         container.appendChild(row);
-        for (let j = 0; j < size/4; j++){
+        for (let j = 0; j < size; j++){
+            let alpha = 1;
             const square = document.createElement("div");
             square.classList.add("square");
             square.addEventListener("mouseover", (event) => {
                 let target = event.target;
 
-                target.setAttribute("style", "background-color: blue");
+                target.style.backgroundColor = rgba(alpha);
+                alpha -= 0.1;
+                if (alpha < 0) {
+                    alpha = 0;
+                }
             });
             row.appendChild(square);
         }
     }
 }
 
-const squareContainer = document.querySelector("#container");
+function rgba(a) {
+    r = Math.floor(Math.random() * 255);
+    g = Math.floor(Math.random() * 255);
+    b = Math.floor(Math.random() * 255);
+    alpha = a;
+    return ["rgba(",r,",",g,",",b,",",alpha,")"].join("");
+}
 
-const button = document.querySelector("#amount");
+function removeDivs() {
+    const container = document.querySelector("#container");
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
+}
 
-button.addEventListener("click", () => {
-    const size = prompt("Enter the amount of squares you want. Max 100");
-    generateDivs(size);
-});
+function startGame() {
+    generateDivs();
+
+    const button = document.querySelector("#amount");
+
+    button.addEventListener("click", () => {
+        let size = prompt("Enter the amount of squares you want. Max 100");
+        if (size > 100) {
+        size = 100;
+        }
+        removeDivs();
+        generateDivs(size);
+    });
+
+}
+
+startGame();
+
