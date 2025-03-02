@@ -1,20 +1,19 @@
-function generateDivs(size = 64) {
+function generateGrid(size = 64) {
     const container = document.querySelector("#container");
     for (let i = 0; i < size; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         container.appendChild(row);
-        for (let j = 0; j < size; j++){
+        for (let j = 1; j <= size; j++){
             let alpha = 1;
             const square = document.createElement("div");
             square.classList.add("square");
             square.addEventListener("mouseover", (event) => {
                 let target = event.target;
-
                 target.style.backgroundColor = rgba(alpha);
                 alpha -= 0.1;
                 if (alpha < 0) {
-                    alpha = 0;
+                    target.style.backgroundColor = "black";
                 }
             });
             row.appendChild(square);
@@ -30,7 +29,7 @@ function rgba(a) {
     return ["rgba(",r,",",g,",",b,",",alpha,")"].join("");
 }
 
-function removeDivs() {
+function removeGrid() {
     const container = document.querySelector("#container");
     while (container.firstChild) {
         container.removeChild(container.firstChild)
@@ -38,7 +37,7 @@ function removeDivs() {
 }
 
 function startGame() {
-    generateDivs();
+    generateGrid();
 
     const button = document.querySelector("#amount");
 
@@ -47,8 +46,8 @@ function startGame() {
         if (size > 100) {
         size = 100;
         }
-        removeDivs();
-        generateDivs(size);
+        removeGrid();
+        generateGrid(size);
     });
 
 }
