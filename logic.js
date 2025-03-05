@@ -1,4 +1,5 @@
-function generateGrid(size = 64) {
+function generateGrid(size = 10) {
+    let squareSize = 600/size;
     const container = document.querySelector("#container");
     for (let i = 0; i < size; i++) {
         const row = document.createElement("div");
@@ -8,6 +9,8 @@ function generateGrid(size = 64) {
             let alpha = 1;
             const square = document.createElement("div");
             square.classList.add("square");
+            square.style.height = squareSize + "px";
+            square.style.width = squareSize + "px";
             square.addEventListener("mouseover", (event) => {
                 let target = event.target;
                 target.style.backgroundColor = rgba(alpha);
